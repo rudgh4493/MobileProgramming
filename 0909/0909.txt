@@ -1,0 +1,40 @@
+0909
+1. 다음 표의 변수를 선언하고 대응하는 값을 저장하는 자바코드를 작성하시오
+
+double degree = 28.4;
+
+
+
+2. 정수 88을 배열에 저장하는 자바 코드를 작성하시오.
+
+int array[]=new array[1];
+array[0]=88;
+
+int는 4B	int[3] -> 12B
+
+
+
+3. 1부터 9876까지 모든 자연수의 총합을 출력하는 자바코드를 작성하시오
+
+for(int i=0; i<9876; i++){
+	int x+=i;
+	sysout(x);
+}
+
+4. sysout(Calc.add(11,22));를 실행하면 33이 출력된다고 한다. add()는 파라미터로 전달받은 두 정수의 합을 반환하는 메소드이다. 클래스 Calc의 정의문을 작성하시오.
+
+public static int add(int x, int y){
+	return x+y;	
+}	
+
+
+5. 다음은 학생 클래스 Student의 정의문을 보인 것이다. 학번이 "KS1234"이고 점수가 95점인 Student 객체를 생성하는 자바 코드를 작성하시오.
+
+public class Student{
+	String number = "KS1234";
+	int score = "95";
+}
+
+시험은 대부분 코드작성문제
+
+자바는 변수가 선언이 되고 변수를 초기화해야한다
