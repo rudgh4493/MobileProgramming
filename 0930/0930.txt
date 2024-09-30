@@ -1,0 +1,17 @@
+0930
+
+
+Speakable s=new Speakable();
+s.speak();
+이거 안됨
+추상메소드인데 말할수 있는 어떤 객체를 나타내는중
+-> 인터페이스의 자식클래스를 만들지
+
+
+
+textview객체
+-연결- 터치클릭- 감지객체
+view.onclicklistener인터페이서
+
+
+이벤트처리법4가지 연습
