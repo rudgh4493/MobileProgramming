@@ -1,0 +1,26 @@
+뷰 View
+UI부품 component
+LinearLayout
+	TextView
+	Button
+	EditText
+	ChechBox
+	RadioButton
+	RadioGroup
+		
+ViewGroup =	컨테이너
+
+
+
+
+코드 작성하시오 완성하시오 빈칸을 채우시오
+쉬운거 - 이 컨테이너의 이름을 적으시오
+
+setContentView(R.id.activity_main); 	activity_main 이거 이름 변경아마
+
+findViewById(R.id.textview); 			id확인
+
+
+
+17페이지
+27페이지
