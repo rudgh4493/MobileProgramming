@@ -1,0 +1,23 @@
+1030	
+	viewgroup
+	linearlayout
+    ┌		radiogroup
+view
+    └ textview
+	button
+	edittext
+		gettext() settext()
+	chechbox	┐	ischecked
+	radiobutton┘	setchecked()
+		
+
+view.onclicklistener
+	onclick(){}
+
+
+24p 25p 26p 22p 스피너 토스트
+
+시험가능 20p mainactivity.java 볼드체
+리스트뷰 어레이어댑터		작성하는 코드
+
+어댑터 스피너 연결됨 (대체가능)
