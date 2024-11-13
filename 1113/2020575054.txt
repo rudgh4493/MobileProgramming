@@ -1,0 +1,239 @@
+package com.example.prac7;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+public class MainActivity extends AppCompatActivity {
+    private String city[]={"서울","부산","울산","대구","광주"};
+    private TextView tv_title, tv1, tv2, tv3, tv4, tv5;
+    private Spinner sp;
+    private EditText et;
+    private RadioButton rbn, rbs;
+    private CheckBox chw, cha;
+    private Button btn_submit;
+    String seletedcity, s1 ;
+    int passenger;
+
+    @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        tv_title = findViewById(R.id.tv_title);
+        sp = findViewById(R.id.sp);
+        et = findViewById(R.id.et);
+        rbn = findViewById(R.id.rbn);
+        rbs = findViewById(R.id.rbs);
+        chw = findViewById(R.id.chw);
+        cha = findViewById(R.id.cha);
+        btn_submit = findViewById(R.id.btn_submit);
+        tv1 = findViewById(R.id.tv1);
+        tv2 = findViewById(R.id.tv2);
+        tv3 = findViewById(R.id.tv3);
+        tv4 = findViewById(R.id.tv4);
+        tv5 = findViewById(R.id.tv5);
+
+        StringBuilder sb= new StringBuilder();
+
+        ArrayAdapter ad=new ArrayAdapter(this, android.R.layout.simple_spinner_item, city);
+        sp.setAdapter(ad);
+
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                seletedcity = city[position];
+                s1 = "목적지: "+city[position];
+                tv1.setText(s1);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        tv2.setText( "승차인원: (명)");
+
+        et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                String v=et.getText().toString();
+                passenger = Integer.parseInt(v);
+                tv2.setText( "승차인원: "+Integer.parseInt(v)+"(명)");
+            }
+        });
+
+        rbn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (rbn.isChecked()) {
+                    tv3.setText("좌석: 일반실");
+                }
+            }
+        });
+        rbs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (rbs.isChecked()) {
+                    tv3.setText("좌석: 특실");
+                }
+            }
+        });
+        chw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (chw.isChecked()) {
+                    tv4.setText("창측 선호");
+                }else
+                    tv4.setText("");
+            }
+        });
+        cha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (cha.isChecked()){
+                    tv5.setText("복도측 선호");
+            }else
+                    tv5.setText("");
+            }
+        });
+
+
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sb.setLength(0);
+                sb.append("목적지: "+seletedcity+"\n");
+                sb.append("승차인원:"+passenger+" (명)\n");
+                if(rbn.isChecked()) sb.append("좌석: 일반실\n");
+                if(rbs.isChecked()) sb.append("좌석: 특실\n");
+                if(chw.isChecked()) sb.append("창측 선호\n");
+                if(cha.isChecked()) sb.append("복도측 선호\n");
+
+                //    tv1.setText(sb.toString());
+
+                Toast.makeText(getApplicationContext(), "제출: "+sb, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+}
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_title"
+        android:text="기차표 예약"
+        android:textSize="40dp"/>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:id="@+id/sp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et"
+        android:hint="인원수"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rbn"
+            android:text="일반실"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rbs"
+            android:text="특실"/>
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/seat">
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chw"
+            android:text="창측 선호"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cha"
+            android:text="복도측 선호"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:background="#9EFF9D">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv3"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv4"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv5"/>
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_submit"
+        android:text="제출"/>
+
+
+</LinearLayout>
