@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/popupmenu_italic" android:title="italic"/>
+    <item android:id="@+id/popupmenu_bold" android:title="bold"/>
+    <item android:id="@+id/popupmenu_normal" android:title="normal"/>
+</menu>
